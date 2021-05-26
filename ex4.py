@@ -47,17 +47,16 @@ city_data = dict()
 data_to_append = list()
 all_data = dict()
 origin_data = dict()
-get_location(origin, origin_data)
+get_location(origin, origin_data, apikey)
 for line in fhand.readlines():
     city = line.strip()
     try:
-        get_location(city, city_data)
-        get_distance(city_data, origin_data)
+        get_location(city, city_data, apikey)
+        get_distance(city_data, origin_data, apikey)
         for d in city_data:
             data_to_append.append(d+": "+city_data[d])
         all_data[city] = tuple(data_to_append)
         print(str(all_data))
-        break
     except Exception as e:
         print(str(e))
         break
